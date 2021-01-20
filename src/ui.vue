@@ -1,7 +1,7 @@
 <template>
 <div id="ui">
-	<button class="button button--primary" @click='createNode'> Create a Vue3 node </button>
-	<p class="type type--pos-small-normal"> {{message}} </p>
+  <input type=number class="input" v-model="indent" />
+	<button class="button button--primary" @click='createNode'> Indent Text </button>
 </div>
 </template>
 
@@ -19,11 +19,11 @@ import {
 export default {
   setup() {
 
-    const message = ref("")
+    const indent = ref("")
 
     function createNode() {
       // This shows how the UI code can send messages to the main code.
-      dispatch("createNode");
+      dispatch("createNode", indent.value);
     }
     onMounted(() => {
 
@@ -34,7 +34,7 @@ export default {
     })
 
     return {
-      message,
+      indent,
       createNode
     };
   }
